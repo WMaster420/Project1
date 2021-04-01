@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A6FF5722"
+    tools:context=".login" >
+
+    <TextView
+        android:id="@+id/Ltext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="monospace"
+        android:text="Welcome back!"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/LEmail"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="90dp"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="Please enter your email address"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#86FFFFFF" />
+
+    <EditText
+        android:id="@+id/Lpass"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="140dp"
+        android:ems="10"
+        android:hint="Your password please"
+        android:inputType="textPassword"
+        android:textColorHint="#7EFFFFFF" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:text="Login" />
+</FrameLayout>
