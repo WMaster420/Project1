@@ -19,10 +19,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class register extends Fragment {
 
-    EditText name, email, pass;
+    EditText name, email, pass, city, gender, birthdate;
     Button btn_register;
     FirebaseAuth fAuth;
 
@@ -33,6 +35,9 @@ public class register extends Fragment {
         name = view.findViewById(R.id.Tname);
         email = view.findViewById(R.id.Temail);
         pass = view.findViewById(R.id.Tpass);
+        city = view.findViewById(R.id.Tcity);
+        gender = view.findViewById(R.id.Tgender);
+        birthdate = view.findViewById(R.id.Bdate);
         btn_register = (Button) view.findViewById(R.id.Rbutton);
 
         fAuth= FirebaseAuth.getInstance();
@@ -46,8 +51,12 @@ public class register extends Fragment {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String Etr_name = name.getText().toString().trim();
                 String Etr_email = email.getText().toString().trim();
                 String Etr_pass = pass.getText().toString().trim();
+                String Etr_city = city.getText().toString().trim();
+                String Etr_gender = gender.getText().toString().trim();
+                String Etr_birthdate = birthdate.getText().toString().trim();
 
                 if (TextUtils.isEmpty(Etr_email)){
                     email.setError("Email is required");
@@ -67,6 +76,10 @@ public class register extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getContext(), "Welcome :)", Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase rootnode = FirebaseDatabase.getInstance();
+                            DatabaseReference reference = rootnode.getReference("User");
+                            UserClass NewUser = new UserClass(Etr_name, Etr_city, Etr_email, Etr_gender, Etr_birthdate);
+                            reference.setValue(NewUser);
                             startActivity(new Intent(getContext(), Dashboard.class));
                         }
                         else{
