@@ -36,9 +36,9 @@
         android:layout_marginTop="120dp"
         android:ems="10"
         android:fontFamily="monospace"
+        android:hint="Your name goes here"
         android:inputType="textPersonName"
         android:shadowColor="#FFFFFF"
-        android:text="Your name goes here"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF" />
 
@@ -79,10 +79,11 @@
 
     <EditText
         android:id="@+id/Bdate"
-        android:layout_width="319dp"
+        android:layout_width="323dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Your date of birth"
         android:inputType="date"
@@ -95,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="Your City"
         android:inputType="textPersonName"
@@ -108,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         android:ems="10"
         android:hint="What is your gender?"
         android:inputType="textPersonName"

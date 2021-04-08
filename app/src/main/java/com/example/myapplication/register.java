@@ -16,17 +16,26 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class register extends Fragment {
 
     EditText name, email, pass, city, gender, birthdate;
     Button btn_register;
     FirebaseAuth fAuth;
+    FirebaseFirestore fstore;
+    String UserID;
 
 
     @Override
@@ -76,10 +85,21 @@ public class register extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getContext(), "Welcome :)", Toast.LENGTH_SHORT).show();
-                            FirebaseDatabase rootnode = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = rootnode.getReference("User");
-                            UserClass NewUser = new UserClass(Etr_name, Etr_city, Etr_email, Etr_gender, Etr_birthdate);
-                            reference.setValue(NewUser);
+                            UserID = fAuth.getCurrentUser().getUid();
+                            fstore=FirebaseFirestore.getInstance();
+                            DocumentReference documentReference = fstore.collection("Users").document(UserID);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("Name",Etr_name);
+                            user.put("Email",Etr_email);
+                            user.put("city", Etr_city);
+                            user.put("birthdate", Etr_birthdate);
+                            user.put("gender",Etr_gender);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getContext(), "Data sent to cloud", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             startActivity(new Intent(getContext(), Dashboard.class));
                         }
                         else{
