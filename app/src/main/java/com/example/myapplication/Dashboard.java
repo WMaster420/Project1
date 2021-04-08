@@ -62,7 +62,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         if (item.getItemId() == R.id.Menu_log){
             FirebaseAuth.getInstance().signOut();
             onDestroy();
-            startActivity(new Intent(getBaseContext(), Dashboard.class));
+            startActivity(new Intent(getBaseContext(), MainActivity.class));
             Toast.makeText(this, "Successfully Logged out", Toast.LENGTH_SHORT).show();
         }
         return true;
